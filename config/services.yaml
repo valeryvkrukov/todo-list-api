@@ -17,8 +17,13 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
+
+    TodoList\:
+        resource: '../src/TodoList/'
+        exclude:
+            - '../src/TodoList/User/Entity/'
+            #- '../src/TodoList/Api/Entity/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
