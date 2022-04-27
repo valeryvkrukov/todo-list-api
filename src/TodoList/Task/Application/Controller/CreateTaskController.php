@@ -28,7 +28,8 @@ class CreateTaskController extends AbstractController
             $parameters['title'],
             $parameters['description'],
             $parameters['priority'],
-            $parameters['status']
+            $parameters['status'],
+            $parameters['user']
         ));
 
         return JsonResponse::fromJsonString(

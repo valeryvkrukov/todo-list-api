@@ -9,6 +9,7 @@ class CreateTaskCommand
     private string $description;
     private int $priority;
     private string $status;
+    private string $user;
 
     public function getTitle(): string
     {
@@ -48,5 +49,15 @@ class CreateTaskCommand
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    public function getUser(): string
+    {
+        return $this->user;
+    }
+
+    public function setUser(string $user): void
+    {
+        $this->user = $user;
     }
 }

@@ -14,7 +14,7 @@ class FindAllTasksQuery
         $this->tasks = [];
     }
 
-    public function getUserId(): ?string
+    public function getUserId(): string
     {
         return $this->userId;
     }

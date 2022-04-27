@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Shared\Aggregate\AggregateRoot;
+use App\TodoList\User\Domain\Entity\User;
 use App\TodoList\Task\Domain\Event\TaskCreatedEvent;
 use App\TodoList\Task\Infrastructure\Repository\TaskRepository;
 
@@ -35,6 +36,9 @@ class Task extends AggregateRoot
 
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: "parent")]
     private Collection $children;
+
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private $user;
 
     #[ORM\Column(type: "date_immutable")]
     private \DateTimeImmutable $createdAt;
@@ -128,6 +132,18 @@ class Task extends AggregateRoot
        return $this;
     }
 
+    public function getUser(): ?TaskUserId
+    {
+        return $this->user ? new TaskUserId($this->user) : null;
+    }
+
+    public function setUser(TaskUserId $user): self
+    {
+        $this->user = $user->getUuid();
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -157,13 +173,15 @@ class Task extends AggregateRoot
         string $title,
         string $description,
         TaskPriority $priority,
-        TaskStatus $status
+        TaskStatus $status,
+        TaskUserId $user
     ): self {
         $task = new self($taskId);
         $task->setTitle($title);
         $task->setDescription($description);
         $task->setPriority($priority);
         $task->setStatus($status);
+        $task->setUser($user);
         $task->setCreatedAt(new \DateTimeImmutable('now'));
         $task->setUpdatedAt(new \DateTimeImmutable('now'));
 

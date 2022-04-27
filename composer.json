@@ -16,6 +16,7 @@
         "symfony/dotenv": "6.0.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.0.*",
+        "symfony/http-client": "6.0.*",
         "symfony/messenger": "6.0.*",
         "symfony/proxy-manager-bridge": "6.0.*",
         "symfony/runtime": "6.0.*",
@@ -38,10 +39,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/TodoList/Task",
-            "TodoList\\Shared\\": "src/Shared/",
-            "TodoList\\User\\": "src/TodoList/User",
-            "TodoList\\Task\\": "src/TodoList/Task"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {

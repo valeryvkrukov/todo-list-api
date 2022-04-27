@@ -23,8 +23,8 @@ class FindAllTasksHandler implements MessageHandlerInterface
 
     public function __invoke(FindAllTasksQuery $findTasksQuery): string
     {
-        //$tasks = $findTasksQuery->getTasks();
-
+        $tasks = $findTasksQuery->getTasks();
+var_dump($tasks);
         $tasks = $this->taskRepository->findAll();
 
         $childTasksNormalized = [];

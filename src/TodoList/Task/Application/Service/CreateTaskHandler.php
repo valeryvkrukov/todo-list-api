@@ -8,6 +8,7 @@ use App\TodoList\Task\Domain\Entity\Task;
 use App\TodoList\Task\Domain\Entity\TaskId;
 use App\TodoList\Task\Domain\Entity\TaskPriority;
 use App\TodoList\Task\Domain\Entity\TaskStatus;
+use App\TodoList\Task\Domain\Entity\TaskUserId;
 use App\TodoList\Task\Domain\Repository\TaskRepositoryInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
@@ -41,7 +42,8 @@ class CreateTaskHandler implements MessageHandlerInterface
             $createTaskCommand->getTitle(),
             $createTaskCommand->getDescription(),
             new TaskPriority($createTaskCommand->getPriority()),
-            new TaskStatus($createTaskCommand->getStatus())
+            new TaskStatus($createTaskCommand->getStatus()),
+            new TaskUserId($createTaskCommand->getUser())
         );
 
         $this->taskRepository->save($task);

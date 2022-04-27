@@ -5,11 +5,14 @@ namespace App\TodoList\User\Domain\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
+use App\TodoList\Task\Domain\Entity\Task;
 use App\TodoList\User\Domain\Entity\Username;
 use App\TodoList\User\Infrastructure\Repository\UserRepository;
 use App\TodoList\User\Domain\Event\UserCreatedEvent;
-use App\TodoList\Shared\Aggregate\AggregateRoot;
+use App\Shared\Aggregate\AggregateRoot;
 
 #[ORM\Entity(repositoryClass: UserRepository::class, readOnly: false)]
 class User extends AggregateRoot implements UserInterface
@@ -20,6 +23,9 @@ class User extends AggregateRoot implements UserInterface
 
     #[ORM\Column(type: "string", length: 32, unique: true, nullable: false)]
     private string $username;
+
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: "user")]
+    private Collection $tasks;
 
     public function __construct(string $id)
     {
