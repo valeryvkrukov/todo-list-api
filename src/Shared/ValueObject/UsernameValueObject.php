@@ -1,6 +1,6 @@
 <?php
 
-namespace TodoList\Shared\ValueObject;
+namespace App\Shared\ValueObject;
 
 
 abstract class UsernameValueObject

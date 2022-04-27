@@ -1,10 +1,10 @@
 <?php
 
-namespace TodoList\User\Domain\Event;
+namespace App\TodoList\User\Domain\Event;
 
 
-use TodoList\User\Domain\Entity\Username;
-use TodoList\Shared\Event\DomainEventInterface;
+use App\TodoList\User\Domain\Entity\Username;
+use App\Shared\Event\DomainEventInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class UserCreatedEvent extends Event implements DomainEventInterface

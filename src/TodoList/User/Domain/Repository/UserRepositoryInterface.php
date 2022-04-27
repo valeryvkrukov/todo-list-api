@@ -1,9 +1,9 @@
 <?php
 
-namespace TodoList\User\Domain\Repository;
+namespace App\TodoList\User\Domain\Repository;
 
 
-use TodoList\User\Domain\Entity\User;
+use App\TodoList\User\Domain\Entity\User;
 
 interface UserRepositoryInterface
 {

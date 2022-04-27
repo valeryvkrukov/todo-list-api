@@ -1,6 +1,6 @@
 <?php
 
-namespace TodoList\Shared\Event;
+namespace App\Shared\Event;
 
 
 interface DomainEventInterface

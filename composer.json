@@ -38,9 +38,10 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
+            "App\\": "src/TodoList/Task",
             "TodoList\\Shared\\": "src/Shared/",
-            "TodoList\\Api\\": "src/TodoList/"
+            "TodoList\\User\\": "src/TodoList/User",
+            "TodoList\\Task\\": "src/TodoList/Task"
         }
     },
     "autoload-dev": {

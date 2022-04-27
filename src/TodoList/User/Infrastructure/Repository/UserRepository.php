@@ -1,9 +1,10 @@
 <?php
 
-namespace TodoList\User\Infrastructure\Repository;
+namespace App\TodoList\User\Infrastructure\Repository;
 
-use TodoList\User\Domain\Entity\User;
-use TodoList\User\Domain\Repository\UserRepositoryInterface;
+
+use App\TodoList\User\Domain\Entity\User;
+use App\TodoList\User\Domain\Repository\UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

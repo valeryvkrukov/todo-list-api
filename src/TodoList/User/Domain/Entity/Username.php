@@ -1,9 +1,9 @@
 <?php
 
-namespace TodoList\User\Domain\Entity;
+namespace App\TodoList\User\Domain\Entity;
 
 
-use TodoList\Shared\ValueObject\UsernameValueObject;
+use App\TodoList\Shared\ValueObject\UsernameValueObject;
 
 class Username extends UsernameValueObject
 {

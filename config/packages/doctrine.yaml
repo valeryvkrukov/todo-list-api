@@ -13,8 +13,13 @@ doctrine:
             User:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/TodoList/User/Domain/Entity'
-                prefix: 'TodoList\User\Domain\Entity'
+                prefix: 'App\TodoList\User\Domain\Entity'
                 alias: User
+            Task:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/TodoList/Task/Domain/Entity'
+                prefix: 'App\TodoList\Task\Domain\Entity'
+                alias: Task
 
 when@test:
     doctrine:

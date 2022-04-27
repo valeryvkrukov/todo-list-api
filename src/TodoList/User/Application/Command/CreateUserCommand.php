@@ -1,6 +1,6 @@
 <?php
 
-namespace TodoList\User\Application\Command;
+namespace App\TodoList\User\Application\Command;
 
 
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use TodoList\User\Application\Service\CreateUserService;
+use App\TodoList\User\Application\Service\CreateUserService;
 
 #[AsCommand(
     name: 'todo-list:create-user',

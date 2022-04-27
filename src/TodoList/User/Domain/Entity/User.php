@@ -1,15 +1,15 @@
 <?php
 
-namespace TodoList\User\Domain\Entity;
+namespace App\TodoList\User\Domain\Entity;
 
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use TodoList\User\Domain\Entity\Username;
-use TodoList\User\Infrastructure\Repository\UserRepository;
-use TodoList\User\Domain\Event\UserCreatedEvent;
-use TodoList\Shared\Aggregate\AggregateRoot;
+use App\TodoList\User\Domain\Entity\Username;
+use App\TodoList\User\Infrastructure\Repository\UserRepository;
+use App\TodoList\User\Domain\Event\UserCreatedEvent;
+use App\TodoList\Shared\Aggregate\AggregateRoot;
 
 #[ORM\Entity(repositoryClass: UserRepository::class, readOnly: false)]
 class User extends AggregateRoot implements UserInterface

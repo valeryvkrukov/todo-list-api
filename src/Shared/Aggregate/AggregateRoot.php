@@ -1,9 +1,9 @@
 <?php
 
-namespace TodoList\Shared\Aggregate;
+namespace App\Shared\Aggregate;
 
 
-use TodoList\Shared\Event\DomainEventInterface;
+use App\Shared\Event\DomainEventInterface;
 
 abstract class AggregateRoot
 {

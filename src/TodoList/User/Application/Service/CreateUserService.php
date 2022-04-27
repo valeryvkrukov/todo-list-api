@@ -1,13 +1,13 @@
 <?php
 
-namespace TodoList\User\Application\Service;
+namespace App\TodoList\User\Application\Service;
 
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use TodoList\User\Domain\Entity\User;
-use TodoList\User\Domain\Entity\Username;
-use TodoList\User\Domain\Repository\UserRepositoryInterface;
+use App\TodoList\User\Domain\Entity\User;
+use App\TodoList\User\Domain\Entity\Username;
+use App\TodoList\User\Domain\Repository\UserRepositoryInterface;
 
 class CreateUserService
 {
