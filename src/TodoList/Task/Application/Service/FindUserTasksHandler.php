@@ -3,12 +3,12 @@
 namespace App\TodoList\Task\Application\Service;
 
 
-use App\TodoList\Task\Application\Query\FindAllTasksQuery;
+use App\TodoList\Task\Application\Query\FindUserTasksQuery;
 use App\TodoList\Task\Domain\Repository\TaskRepositoryInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class FindAllTasksHandler implements MessageHandlerInterface
+class FindUserTasksHandler implements MessageHandlerInterface
 {
     private TaskRepositoryInterface $taskRepository;
     private SerializerInterface $serializer;
@@ -21,28 +21,29 @@ class FindAllTasksHandler implements MessageHandlerInterface
         $this->serializer = $serializer;
     }
 
-    public function __invoke(FindAllTasksQuery $findTasksQuery): string
+    public function __invoke(FindUserTasksQuery $findTasksQuery): string
     {
-        $tasks = $this->taskRepository->findAll();
+        $userId = $findTasksQuery->getUserId();
 
-        $childTasksNormalized = [];
+        $tasks = $this->taskRepository->findBy(['user' => $userId]);
 
         $results = [];
 
         if ($tasks) {
             foreach ($tasks as $task) {
+                $results[$task->getId()] = $this->serializer->normalize($task);
+
                 $childTasks = $task->getChildren();
                 if ($childTasks) {
+                    $childTasksNormalized = [];
                     foreach ($childTasks as $children) {
                         $childTasksNormalized[] = $this->serializer->normalize($children);
+                        $results[$task->getId()]['childTasks'] = $childTasksNormalized;
                     }
-
-                    $results[$task->getId()->getUuid()] = array_merge(
-                        $this->serializer->normalize($task),
-                        ['childTasks' => $childTasksNormalized]
-                    );
                 }
             }
+        } else {
+            $results = ['results' => 'Task not exists'];
         }
 
         return json_encode($results, JSON_THROW_ON_ERROR);

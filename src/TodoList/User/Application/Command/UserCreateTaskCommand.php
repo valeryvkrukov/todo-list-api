@@ -36,7 +36,7 @@ class UserCreateTaskCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setHelp('This command show users registered in API')
+            ->setHelp('This command create new task for user using cURL call to API')
             ->addArgument('username', InputArgument::REQUIRED, 'Username')
             ->addArgument('title', InputArgument::REQUIRED, 'Task title')
             ->addArgument('description', InputArgument::REQUIRED, 'Task description')
