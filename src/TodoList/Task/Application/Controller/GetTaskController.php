@@ -3,15 +3,15 @@
 namespace App\TodoList\Task\Application\Controller;
 
 
-use App\TodoList\Task\Application\Query\FindAllTasksQuery;
+use App\TodoList\Task\Application\Query\FindTaskQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api/tasks', name: 'task_list_all', methods: ['GET'])]
-class GetAllTasksController extends AbstractController
+#[Route('/api/task/{id}', name: 'task_get_single', methods: ['GET'])]
+class GetTaskController extends AbstractController
 {
     use HandleTrait;
 
@@ -20,9 +20,9 @@ class GetAllTasksController extends AbstractController
         $this->messageBus = $messageBus;
     }
 
-    public function __invoke(): JsonResponse
+    public function __invoke(string $id): JsonResponse
     {
-        $task = $this->handle(new FindAllTasksQuery());
+        $task = $this->handle(new FindTaskQuery($id));
 
         return JsonResponse::fromJsonString($task);
     }

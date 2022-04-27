@@ -32,7 +32,7 @@ class CreateTaskController extends AbstractController
         ));
 
         return JsonResponse::fromJsonString(
-            'JSON' . $request->getSession()->get('last_task_created')
+            $request->getSession()->get('last_task_created')
         );
     }
 }

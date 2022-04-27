@@ -31,7 +31,7 @@ class FindTaskHandler implements MessageHandlerInterface
 
         if ($task) {
             foreach ($task->getChildren() as $children) {
-                $childTasksNormalized[] = $this->serializer->normalize(children);
+                $childTasksNormalized[] = $this->serializer->normalize($children);
             }
 
             $results = array_merge(
