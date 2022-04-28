@@ -12,19 +12,22 @@ class OnTaskCreationRequestedEvent extends Event
     private int $priority;
     private string $status;
     private string $user;
+    private ?string $parent;
 
     public function __construct(
         string $title,
         string $description,
         int $priority,
         string $status,
-        string $user
+        string $user,
+        ?string $parent
     ) {
         $this->title = $title;
         $this->description = $description;
         $this->priority = $priority;
         $this->status = $status;
         $this->user = $user;
+        $this->parent = $parent;
     }
 
     public function getTitle(): string
@@ -50,5 +53,10 @@ class OnTaskCreationRequestedEvent extends Event
     public function getUser(): string
     {
         return $this->user;
+    }
+
+    public function getParent(): ?string
+    {
+        return $this->parent;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\TodoList\Task\Application\Command;
 
 
+use App\TodoList\Task\Domain\Entity\Task;
+
 class CreateTaskCommand
 {
     private string $title;
@@ -10,6 +12,7 @@ class CreateTaskCommand
     private int $priority;
     private string $status;
     private string $user;
+    private ?Task $parent;
 
     public function getTitle(): string
     {
@@ -59,5 +62,15 @@ class CreateTaskCommand
     public function setUser(string $user): void
     {
         $this->user = $user;
+    }
+
+    public function getParent(): ?Task
+    {
+        return $this->parent;
+    }
+
+    public function setParent(Task $parent): void
+    {
+        $this->parent = $parent;
     }
 }

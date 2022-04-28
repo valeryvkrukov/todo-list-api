@@ -3,8 +3,11 @@
 namespace App\Shared\ValueObject;
 
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 abstract class AggregateRootId
 {
+    #[Groups(['parent', 'children'])]
     protected string $uuid;
 
     public function __construct(string $uuid)

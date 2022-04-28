@@ -3,10 +3,13 @@
 namespace App\Shared\ValueObject;
 
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 abstract class EnumValueObject
 {
     protected array $allowedValues;
 
+    #[Groups(['parent', 'children'])]
     protected string $value;
 
     public function __construct(string $value)

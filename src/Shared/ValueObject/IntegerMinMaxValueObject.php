@@ -3,10 +3,14 @@
 namespace App\Shared\ValueObject;
 
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 abstract class IntegerMinMaxValueObject
 {
     protected int $minValue;
     protected int $maxValue;
+
+    #[Groups(['parent', 'children'])]
     protected int $value;
 
     public function __construct(int $value)

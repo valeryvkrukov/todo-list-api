@@ -49,6 +49,11 @@ class User extends AggregateRoot implements UserInterface
         return $this;
     }
 
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
     public function getUserIdentifier(): string
     {
         return $this->username;
