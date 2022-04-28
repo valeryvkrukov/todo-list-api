@@ -31,16 +31,16 @@ class FindUserTasksHandler implements MessageHandlerInterface
 
         if ($tasks) {
             foreach ($tasks as $task) {
-                $results[$task->getId()] = $this->serializer->normalize($task);
+                $results[$task->getId()->getUuid()] = $this->serializer->normalize($task, null, ['groups' => 'children']);
 
-                $childTasks = $task->getChildren();
+                /*$childTasks = $task->getChildren();
                 if ($childTasks) {
                     $childTasksNormalized = [];
                     foreach ($childTasks as $children) {
                         $childTasksNormalized[] = $this->serializer->normalize($children);
                         $results[$task->getId()]['childTasks'] = $childTasksNormalized;
                     }
-                }
+                }*/
             }
         } else {
             $results = ['results' => 'Task not exists'];

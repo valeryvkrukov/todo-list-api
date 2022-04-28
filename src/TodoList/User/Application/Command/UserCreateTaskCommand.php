@@ -6,6 +6,7 @@ namespace App\TodoList\User\Application\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -42,6 +43,7 @@ class UserCreateTaskCommand extends Command
             ->addArgument('description', InputArgument::REQUIRED, 'Task description')
             ->addArgument('priority', InputArgument::REQUIRED, 'Task priority')
             ->addArgument('status', InputArgument::REQUIRED, 'Task status')
+            ->addOption('parent', null, InputOption::VALUE_OPTIONAL, 'Parent task UUID')
         ;
     }
 
@@ -49,7 +51,7 @@ class UserCreateTaskCommand extends Command
     {
         $username = $input->getArgument('username');
 
-        $output->writeln(['Creating Task for: ' . $username, '============', '']);
+        $output->writeln(['Creating Task for user %s: ' . $username, '============', '']);
         
         $user = $this->userRepository->findOneBy(['username' => $username]);
 
@@ -60,6 +62,7 @@ class UserCreateTaskCommand extends Command
                 'priority' => $input->getArgument('priority'),
                 'status' => $input->getArgument('status'),
                 'user' => $user->getId(),
+                'parent' => $input->getOption('parent'),
             ], JSON_THROW_ON_ERROR);
 
             $response = $this->client->request(
@@ -80,6 +83,8 @@ class UserCreateTaskCommand extends Command
                     $input->getArgument('title'),
                     $username
                 ));
+            } else {
+                $output->write($response->getContent());
             }
         }
 

@@ -43,14 +43,15 @@ class CreateTaskHandler implements MessageHandlerInterface
             $createTaskCommand->getDescription(),
             new TaskPriority($createTaskCommand->getPriority()),
             new TaskStatus($createTaskCommand->getStatus()),
-            new TaskUserId($createTaskCommand->getUser())
+            new TaskUserId($createTaskCommand->getUser()),
+            $createTaskCommand->getParent()
         );
 
         $this->taskRepository->save($task);
 
         $this->requestStack->getSession()->set(
             'last_task_created',
-            $this->serializer->serialize($task, 'json')
+            $this->serializer->serialize($task, 'json', ['groups' => ['children']])
         );
 
         foreach ($task->pullDomainEvents() as $domainEvent) {

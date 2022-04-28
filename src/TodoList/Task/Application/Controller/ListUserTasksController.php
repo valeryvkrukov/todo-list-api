@@ -22,7 +22,7 @@ class ListUserTasksController extends AbstractController
     }
 
     public function __invoke(Request $request): JsonResponse
-    {dd($request->get('userId'));
+    {
         $tasks = $this->handle(
             new FindUserTasksQuery(
                 $request->get('userId')
